@@ -12,5 +12,13 @@
   "license": "ISC",
   "devDependencies": {
     "mocha": "^11.2.2"
-  }
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/DennysMuller/pgats-programacao-js.git"
+  },
+  "bugs": {
+    "url": "https://github.com/DennysMuller/pgats-programacao-js/issues"
+  },
+  "homepage": "https://github.com/DennysMuller/pgats-programacao-js#readme"
 }
