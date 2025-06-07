@@ -1,34 +1,29 @@
-# CI de Nível 01 - Disparo manual a partir de 1 clique
-
-# Nome do 'pipeline'
 name: 'CI - Execução Manual (Testes com Mocha)'
 
-# Gatilho de exec manual = workflow_dispatch
 on:
   workflow_dispatch:
 
-# Trabalhos/tarefas dentro do pipeline = jobs
 jobs:
   testes:
-    # Máquina que o job vai executar
     runs-on: ubuntu-latest
+    continue-on-error: true  # Permite que o job continue mesmo com falha
 
-    # Passos do script de build
     steps:
-      # Clone do projeto
       - name: Clonar projeto
         uses: actions/checkout@v4
 
-      # Instalação do NodeJs
       - name: Instalar NodeJs
         uses: actions/setup-node@v3
         with:
           node-version: 22.x
-          cache: 'npm'  # Habilita cache de dependências
-      
+          cache: 'npm'
+
       - name: Instalar dependências
         run: npm install
 
-      # Executar os testes com mocha
-      - name: Executar Testes
+      - name: Executar Teste COM ERRO (02-testes.js)
+        run: npx mocha ./testes/02-testes.js || echo "Teste com erro concluído - Continuando workflow"
+        continue-on-error: true  # Força continuar mesmo com erro
+
+      - name: Executar Teste SEM ERRO (01-testes.js)
         run: npx mocha ./testes/01-testes.js

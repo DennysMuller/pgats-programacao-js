@@ -34,4 +34,12 @@ describe('Testes do Projeto', () => {
     assert.equal(exibirNomeDogFormatado('piTÁgoraS'), 'PITÁGORAS');
   })
 
+  it('Terceiro teste, forçar erro', () => {
+    try {
+      throw new Error('Erro forçado')  
+    } catch (error) {
+      assert.fail(`Erro esperado, apenas para testar o erro: ${error.message}`)
+    }
+  })
+
 })
